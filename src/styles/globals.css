@@ -5,12 +5,20 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #2E7D32;    /* Green 800 */
+  --primary-light: #4CAF50; /* Green 500 */
+  --primary-dark: #1B5E20;  /* Green 900 */
+  --secondary: #795548;   /* Brown 500 */
+  --secondary-light: #A1887F; /* Brown 300 */
+  --secondary-dark: #4E342E;  /* Brown 800 */
+  --accent: #FFC107;      /* Amber 500 */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary-light: #81C784; /* Green 300 */
   }
 }
 
@@ -23,5 +31,56 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .form-input-dark {
+    @apply w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm 
+           focus:outline-none focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white;
+  }
+  
+  .form-select-dark {
+    @apply w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm 
+           focus:outline-none focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white;
+  }
+  
+  .form-textarea-dark {
+    @apply w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm 
+           focus:outline-none focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white;
+  }
+}
+
+/* Add these dark mode transitions to ensure smooth theme switching */
+html {
+  transition: background-color 0.3s ease;
+}
+
+body {
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Focus styles that work in both modes */
+*:focus-visible {
+  outline: 2px solid #65a30d;
+  outline-offset: 2px;
+}
+
+/* Dark mode scrollbars */
+@media (prefers-color-scheme: dark) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #4b5563 #1f2937;
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #1f2937;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #4b5563;
+    border-radius: 20px;
+    border: 3px solid #1f2937;
   }
 }
